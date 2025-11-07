@@ -385,8 +385,8 @@ class FederatedServer:
         if (round_num == num_rounds - 1) and dager_args is not None and model_wrapper is not None:
             # 获取真实梯度，参考dager attack.py里面的compute_grads_fed_avg函数
             #true_grad = [-(param.data.detach() - og_weights[i])/client.batch_size/client.lr/client.local_epochs for i, param in enumerate(client.model.parameters())]
-            if self.algorithm == 'PBLLM':
-                true_grad , batch_data = selected_clients[dager_args.target_client].train_PRFed()
+            if self.algorithm == 'FedDualDef':
+                true_grad , batch_data = selected_clients[dager_args.target_client].train_FedDualDef()
             elif self.algorithm == 'fedavg'or self.algorithm == 'trimmed_mean':
                 true_grad , batch_data = selected_clients[dager_args.target_client].train_avg()
             elif self.algorithm == 'fat':

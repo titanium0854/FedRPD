@@ -294,7 +294,7 @@ class FederatedClient:
         return captured_grads, return_batch
     
 
-    def train_PRFed(self):
+    def train_FedDualDef(self):
         self.model.eval()
         optimizer = torch.optim.SGD(self.model.parameters(), lr=self.lr)
         train_loader = DataLoader(
@@ -703,7 +703,7 @@ class FederatedClient:
                 epoch_losses.append(epoch_loss)
                 print(f"Client {self.client_id} - Epoch {epoch+1}/{self.local_epochs} | Avg Loss: {epoch_loss:.4f}")
         
-        elif self.algorithm in ['cat', 'cat2', 'PBLLM']:
+        elif self.algorithm in ['cat', 'cat2', 'FedDualDef']:
             # Enhanced CAT/CAT2 implementation
             attack = AdversarialAttack(
                 self.model, 
@@ -752,7 +752,7 @@ class FederatedClient:
                         # Generate adversarial embeddings
                         if self.algorithm in ['cat', 'cat2']:
                             adv_embeds = attack.generate(input_ids, attention_mask, labels)
-                        else:  # PBLLM
+                        else:  # FedDualDef
                             adv_embeds = attack.generate_noise(input_ids, attention_mask, labels)
                         # Compute adversarial loss
                         adv_out = self.model(

@@ -135,7 +135,7 @@ def setup_global_lora_model(model, args):
     return model
 
 def main():
-    parser = argparse.ArgumentParser(description='PRFedLLM')
+    parser = argparse.ArgumentParser(description='FedDualDefLLM')
     
     # Dataset parameters
     parser.add_argument('--dataset', type=str, default='imdb', choices=['imdb', 'agnews','bbcnews','reuters',
@@ -170,7 +170,7 @@ def main():
     
     # Algorithm parameters
     parser.add_argument('--algorithm', type=str, default='fedavg', 
-                        choices=['fedavg', 'PBLLM','fat','fedbn','trimmed_mean'],  # 添加FAT算法
+                        choices=['fedavg', 'FedDualDef','fat','fedbn','trimmed_mean'],  # 添加FAT算法
                         help='Federated learning algorithm')
     parser.add_argument('--epsilon', type=float, default=0.5,  # TODO 这个控制扰动的范数大小，取0.02~0.05之间最好吗？
                         help='Epsilon for adversarial training')  
