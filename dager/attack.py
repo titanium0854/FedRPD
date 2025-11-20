@@ -1,3 +1,7 @@
+# Copyright [2024] [INSAIT, Sofia University "St. Kliment Ohridski" and SRI Lab, ETH Zürich]
+# Licensed under the Apache License, Version 2.0...
+#
+# [2025-011] Modified by [titanium0854]
 import datetime
 import numpy as np
 import torch

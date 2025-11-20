@@ -28,7 +28,7 @@ def get_dager_args(parser):
     # Method and setting
     parser.add_argument('--rng_seed', type=int, default=101) 
     #parser.add_argument('--dataset', choices=['cola', 'sst2', 'rte', 'rotten_tomatoes', 'stanfordnlp/imdb', 'glnmario/ECHR'], required=False)
-    parser.add_argument('--task', choices=['seq_class', 'next_token_pred'], required=True)
+    parser.add_argument('--task', choices=['seq_class', 'next_token_pred'], required=True, default='seq_class')
     parser.add_argument('--pad', choices=['right', 'left'], default='right')
     parser.add_argument('--split', choices=['val', 'test'], default='val', required=False)
     #parser.add_argument('-b','--batch_size', type=int, default=1)
@@ -37,7 +37,7 @@ def get_dager_args(parser):
     parser.add_argument('--end_input', type=int, default=100000)
 
     # Model path (defaults to huggingface download, use local path if offline)
-    parser.add_argument('--model_path', type=str, default='bert-base-uncased')
+    parser.add_argument('--model_path', type=str, default='gpt2')
     parser.add_argument('--finetuned_path', type=str, default=None)
     parser.add_argument('--cache_dir', type=str, default='./models_cache')
     parser.add_argument('--device', type=str, default='cuda')
@@ -48,12 +48,12 @@ def get_dager_args(parser):
     parser.add_argument('--parallel', type=int, default=1000)
     parser.add_argument('--grad_b', type=int, default=None)
     parser.add_argument('--n_layers', type=int, default=2)
-    parser.add_argument('--rank_tol', type=float, default=None) 
+    parser.add_argument('--rank_tol', type=float, default=5e-07) 
     parser.add_argument('--rank_cutoff', type=int, default=20)
     parser.add_argument('--l1_span_thresh', type=float, default=1e-5) 
     parser.add_argument('--l2_span_thresh', type=float, default=1e-3) 
-    parser.add_argument('--l1_filter', choices=['maxB', 'all'], required=True)
-    parser.add_argument('--l2_filter', choices=['overlap', 'non-overlap'], required=True)
+    parser.add_argument('--l1_filter', choices=['maxB', 'all'], required=True, default='all')
+    parser.add_argument('--l2_filter', choices=['overlap', 'non-overlap'], required=True, default='non-overlap')
     parser.add_argument('--distinct_thresh', type=float, default=0.7)
     parser.add_argument('--max_ids', type=int, default=-1)
     parser.add_argument('--maxC', type=int, default=10000000) 
@@ -261,7 +261,7 @@ def main():
     args.label_num = dataset_num_labels.get(args.dataset)
     args.device = f"cuda:{args.gpu_number}"
     args.max_len = args.max_length
-    
+    args.model_path = args.model_name 
     print(f"lable_num:{args.label_num},device:{args.device},max_len:{args.max_len}")
     # Load model and tokenizer
     
