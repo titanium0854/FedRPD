@@ -28,7 +28,7 @@ def get_dager_args(parser):
     # Method and setting
     parser.add_argument('--rng_seed', type=int, default=101) 
     #parser.add_argument('--dataset', choices=['cola', 'sst2', 'rte', 'rotten_tomatoes', 'stanfordnlp/imdb', 'glnmario/ECHR'], required=False)
-    parser.add_argument('--task', choices=['seq_class', 'next_token_pred'], required=True, default='seq_class')
+    parser.add_argument('--task', choices=['seq_class', 'next_token_pred'], required=False, default='seq_class')
     parser.add_argument('--pad', choices=['right', 'left'], default='right')
     parser.add_argument('--split', choices=['val', 'test'], default='val', required=False)
     #parser.add_argument('-b','--batch_size', type=int, default=1)
@@ -52,8 +52,8 @@ def get_dager_args(parser):
     parser.add_argument('--rank_cutoff', type=int, default=20)
     parser.add_argument('--l1_span_thresh', type=float, default=1e-5) 
     parser.add_argument('--l2_span_thresh', type=float, default=1e-3) 
-    parser.add_argument('--l1_filter', choices=['maxB', 'all'], required=True, default='all')
-    parser.add_argument('--l2_filter', choices=['overlap', 'non-overlap'], required=True, default='non-overlap')
+    parser.add_argument('--l1_filter', choices=['maxB', 'all'], required=False, default='all')
+    parser.add_argument('--l2_filter', choices=['overlap', 'non-overlap'], required=False, default='non-overlap')
     parser.add_argument('--distinct_thresh', type=float, default=0.7)
     parser.add_argument('--max_ids', type=int, default=-1)
     parser.add_argument('--maxC', type=int, default=10000000) 
@@ -135,7 +135,7 @@ def setup_global_lora_model(model, args):
     return model
 
 def main():
-    parser = argparse.ArgumentParser(description='FedDualDefLLM')
+    parser = argparse.ArgumentParser(description='FedRPD')
     
     # Dataset parameters
     parser.add_argument('--dataset', type=str, default='imdb', choices=['imdb', 'agnews','bbcnews','reuters',
@@ -170,7 +170,7 @@ def main():
     
     # Algorithm parameters
     parser.add_argument('--algorithm', type=str, default='fedavg', 
-                        choices=['fedavg', 'FedDualDef','fat','fedbn','trimmed_mean'],  # 添加FAT算法
+                        choices=['fedavg', 'FedRPD','fat','fedbn','trimmed_mean'], 
                         help='Federated learning algorithm')
     parser.add_argument('--epsilon', type=float, default=0.5,  # TODO 这个控制扰动的范数大小，取0.02~0.05之间最好吗？
                         help='Epsilon for adversarial training')  

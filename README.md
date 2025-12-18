@@ -1,4 +1,4 @@
-# FedDualDef
+# FedRPD
 
 ## Acknowledgements
 
@@ -8,11 +8,11 @@ This project uses code from [dager-gradient-inversion], developed by INSAIT, Sof
 - Install Anaconda. 
 - Create the conda environment:<br>
 
-> conda env create -n FedDualDef
+> conda env create -n FedRPD
 
 - Enable the created environment:<br>
 
-> conda activate FedDualDef
+> conda activate FedRPD
 
 - Install requirements.txt
 
@@ -20,10 +20,10 @@ This project uses code from [dager-gradient-inversion], developed by INSAIT, Sof
 
 
 ## Commands
-- Running FedDualDef with ade_corpus and gpt2
+- Running FedRPD with ade_corpus and gpt2
 python main.py \
     --dataset ade_corpus \
-    --algorithm FedDualDef \
+    --algorithm FedRPD \
     --model_name gpt2 \
     --lora_r 0 \
     --train_method full \
@@ -51,10 +51,10 @@ python main.py \
     --gpu_number 0 \
     --output_dir ./output 
 
-- Running FedDualDef with ade_corpus and gpt2-xl
+- Running FedRPD with ade_corpus and gpt2-xl
 python main.py \
     --dataset ade_corpus \
-    --algorithm FedDualDef \
+    --algorithm FedRPD \
     --model_name gpt2-xl \
     --lora_r 256 \
     --train_method lora \
@@ -82,10 +82,10 @@ python main.py \
     --gpu_number 0 \
     --output_dir ./output 
 
-- Running FedDualDef with pubmed_rct and gpt2
+- Running FedRPD with pubmed_rct and gpt2
 python main.py \
     --dataset pubmed_rct \
-    --algorithm FedDualDef \
+    --algorithm FedRPD \
     --model_name gpt2 \
     --lora_r 0 \
     --train_method full \
@@ -113,10 +113,10 @@ python main.py \
     --gpu_number 0 \
     --output_dir ./output
 
-- Running FedDualDef with pubmed_rct and gpt2-xl
+- Running FedRPD with pubmed_rct and gpt2-xl
 python main.py \
     --dataset pubmed_rct \
-    --algorithm FedDualDef \
+    --algorithm FedRPD \
     --model_name gpt2-xl \
     --lora_r 256 \
     --train_method lora \
@@ -144,10 +144,10 @@ python main.py \
     --gpu_number 0 \
     --output_dir ./output 
 
-- Running FedDualDef with medical_abstracts and gpt2
+- Running FedRPD with medical_abstracts and gpt2
 python main.py \
     --dataset medical_abstracts \
-    --algorithm FedDualDef \
+    --algorithm FedRPD \
     --model_name gpt2 \
     --lora_r 0 \
     --train_method full \
@@ -175,10 +175,10 @@ python main.py \
     --gpu_number 0 \
     --output_dir ./output 
 
-- Running FedDualDef with medical_abstracts and gpt2-xl
+- Running FedRPD with medical_abstracts and gpt2-xl
 python main.py \
     --dataset medical_abstracts \
-    --algorithm FedDualDef \
+    --algorithm FedRPD \
     --model_name gpt2-xl \
     --lora_r 256 \
     --train_method lora \
